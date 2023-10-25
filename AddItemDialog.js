@@ -4,7 +4,7 @@ import { View, TextInput, Button, Modal } from 'react-native';
 export default function AddItemDialog({ visible, onSave, onCancel }) {
   const [number, setNumber] = useState('');
   const [color, setColor] = useState('');
-
+//commento per git
   const handleSave = () => {
     onSave({ number, color });
     setNumber('');
