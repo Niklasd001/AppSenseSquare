@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity ,Button} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
 
 function Item({ item, onDeleteItem }) {
   const handleDelete = () => {
@@ -20,16 +21,19 @@ function Item({ item, onDeleteItem }) {
   );
 }
 
-export default function Lista({ navigation }) {
+export default function Lista({navigation,route}) {
+  const [nextId, setNextId] = useState(3); // Inizia da 3 per gli ID esistenti
+  
+  //console.log(prova);
   const [data, setData] = useState([
     {
       coloreEsadecimale: "#FF5733",
-      numeroAssociato: "40",
+      numeroAssociato: "0",
       id: "1"
     },
     {
       coloreEsadecimale: "#FDB813",
-      numeroAssociato: "41",
+      numeroAssociato: "100",
       id: "2"
     }
     // Altri elementi dati
@@ -42,8 +46,21 @@ export default function Lista({ navigation }) {
 
    // Funzione per aggiungere un nuovo elemento alla lista
    const addItemToList = (newItem) => {
-    setData([...data, newItem]);
+    const newItemWithId = {
+      ...newItem,
+      id: nextId.toString(), // Converte l'ID in una stringa
+    };
+  
+    setData([...data, newItemWithId]);
+    setNextId(nextId + 1); // Incrementa l'ID successivo
   };
+  
+  useEffect(() => {
+    const prova = route.params;
+    if (prova) {
+      addItemToList(prova);
+    }
+  }, [route.params]); // Esegui l'aggiunta solo quando cambiano i parametri
 
   return (
     <View style={styles.container}>

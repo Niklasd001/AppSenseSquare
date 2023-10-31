@@ -4,12 +4,10 @@ import { FontAwesome } from '@expo/vector-icons'; // Per le icone
 
 export default function AddItemDialog({ visible, onSave, onCancel }) {
   const [number, setNumber] = useState('');
-  const [color, setColor] = useState('');
 
   const handleSave = () => {
-    onSave({ number, color });
+    onSave(number);
     setNumber('');
-    setColor('');
   };
 
   return (

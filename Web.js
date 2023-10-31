@@ -26,6 +26,20 @@ const convertImageToBase64 = async (imageUri) => {
   }
 };
 
+//funzione per gestire e inviare i dati
+function handleSaveButton(navigation, valore1, valore2) {
+  // Raccogli il colore esadecimale e il numero associato dall'utente
+  const coloreEsadecimale = valore1; // Sostituisci con il tuo codice per ottenere il colore
+  const numeroAssociato = valore2; // Sostituisci con il tuo codice per ottenere il numero
+  
+  // Invia il colore esadecimale e il numero a React Native
+  const dataToSend = {
+    coloreEsadecimale: coloreEsadecimale,
+    numeroAssociato: numeroAssociato,
+  };
+  navigation.navigate('Lista', dataToSend);
+}
+
 
 //funzione per convertire rgb in esadecimale
 function rgbStringToHex(rgbString) {
@@ -42,11 +56,14 @@ function rgbStringToHex(rgbString) {
   return null; // Restituisci null in caso di formato RGB non valido
 }
 
+
+
 //pagine effettiva
-function Web({route}) {
+function Web({navigation,route}) {
   const [base64Image, setBase64Image] = useState(null);
   const [isAddItemDialogVisible, setAddItemDialogVisible] = useState(false);
   const imageUri = route.params;
+  const [colore, setColore] = useState(''); // Aggiungi colore come variabile di stato
 
   const fetchAndSetBase64Image = async () => {
     const imageBase64 = await convertImageToBase64(imageUri);
@@ -130,7 +147,7 @@ function Web({route}) {
           let dst = cv.Mat.zeros(src.rows,src.cols, cv.CV_8U);
           let tuttiCerchi = " ";
           let coordinate = new Array(); 
-          cv.HoughCircles(src, circles, cv.HOUGH_GRADIENT, 1, 100, 20, 50, 100, 200);
+          cv.HoughCircles(src, circles, cv.HOUGH_GRADIENT, 1, 100, 20, 50, 100, 500);
           for (let i = 0; i < circles.cols; ++i) {
           
               let x = circles.data32F[i * 3];
@@ -180,23 +197,27 @@ function Web({route}) {
           //alert(event.nativeEvent.data);
           const colore = event.nativeEvent.data;
           console.log(colore);
-          const hexColor = rgbStringToHex(colore);
-          console.log(hexColor)
-          
-          
+          setColore(colore);
+          setAddItemDialogVisible(true);
+
         }}
         style={styles.webView}
       />
 
-      {/* <AddItemDialog
+       <AddItemDialog
       visible={isAddItemDialogVisible}
       onSave={(newItem) => {
+
+        const hexColor = rgbStringToHex(colore);
+        
+        handleSaveButton(navigation, hexColor, newItem);
+        setAddItemDialogVisible(false);
         // Qui puoi gestire il salvataggio dell'elemento nella tua lista
         // e chiudere il dialog box quando hai finito.
-        setAddItemDialogVisible(false);
+       
       }}
       onCancel={() => setAddItemDialogVisible(false)}
-    /> */}
+    /> 
     </View>
   );
 }
