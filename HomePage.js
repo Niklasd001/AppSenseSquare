@@ -6,6 +6,8 @@ import Slider from '@react-native-community/slider';
 import { IconButton } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+
+
 export default function HomePage({navigation}){
   const[hasPermission, setHasPermission]= useState(null);
   const[type,setType] = useState(Camera.Constants.Type.back);
@@ -15,6 +17,8 @@ export default function HomePage({navigation}){
   const[flash,setFlash] = useState(Camera.Constants.FlashMode.off);// valore in off inzialmente
   const[cameraDimensions,setCameraDimensions] = useState({ width: 0, height: 0 });
   const isFocused = useIsFocused();
+ 
+
   
 
 
@@ -53,7 +57,9 @@ const takePhoto = async () => {
       if (hasPermission && camera) {
         const photo = await camera.takePictureAsync({quality: 0.5, ratio:'4:3'});
         setPhotoUri(photo.uri);
-      
+        
+        //serve ad aprire il dialogo per inserire 
+        //setAddItemDialogVisible(true);
       }
       
     } catch (error) {
@@ -67,7 +73,7 @@ const handleCameraRef = (ref) => {
 
  const handleZoomChange = (value) => {
   
-    setZoom(value);
+  setZoom(value);
   
 }; 
 
@@ -76,7 +82,7 @@ if(hasPermission == null || !isFocused){
   return <View/>
 }
 if(hasPermission == false){
-  return <Text> no access to camera </Text>
+  return <Text> ACCESSO ALLA CAMERA NEGATO</Text>
 }
 return (
   <View style={styles.container}>
@@ -128,11 +134,13 @@ return (
 
       </View>
     </Camera>
+    
   </View>
 );
     
 
 }
+
 
 const styles = StyleSheet.create({
   container: {

@@ -18,7 +18,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomePage} options={{headerShown: false}} />
         <Stack.Screen name="Second" component={AddItemDialog} />
         <Stack.Screen name="Web" component={Web} />
-            
+
       </Stack.Navigator>
     </NavigationContainer>
   );

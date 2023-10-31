@@ -20,7 +20,7 @@ function Item({ item, onDeleteItem }) {
   );
 }
 
-export default function App({ navigation }) {
+export default function Lista({ navigation }) {
   const [data, setData] = useState([
     {
       coloreEsadecimale: "#FF5733",
@@ -38,6 +38,11 @@ export default function App({ navigation }) {
   const deleteItem = (itemToDelete) => {
     const updatedData = data.filter((item) => item !== itemToDelete);
     setData(updatedData);
+  };
+
+   // Funzione per aggiungere un nuovo elemento alla lista
+   const addItemToList = (newItem) => {
+    setData([...data, newItem]);
   };
 
   return (
