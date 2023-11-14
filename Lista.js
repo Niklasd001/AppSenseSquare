@@ -22,23 +22,11 @@ function Item({ item, onDeleteItem }) {
 }
 
 export default function Lista({navigation,route}) {
-  const [nextId, setNextId] = useState(3); // Inizia da 3 per gli ID esistenti
-  
-  //console.log(prova);
-  const [data, setData] = useState([
-    {
-      coloreEsadecimale: "#FF5733",
-      numeroAssociato: "0",
-      id: "1"
-    },
-    {
-      coloreEsadecimale: "#FDB813",
-      numeroAssociato: "100",
-      id: "2"
-    }
-    // Altri elementi dati
-  ]);
+  const [nextId, setNextId] = useState(1); 
 
+  const [data, setData] = useState([ ]);
+
+  //funzione per eliminare un elemento della lista
   const deleteItem = (itemToDelete) => {
     const updatedData = data.filter((item) => item !== itemToDelete);
     setData(updatedData);

@@ -29,10 +29,10 @@ const convertImageToBase64 = async (imageUri) => {
 //funzione per gestire e inviare i dati
 function handleSaveButton(navigation, valore1, valore2) {
   // Raccogli il colore esadecimale e il numero associato dall'utente
-  const coloreEsadecimale = valore1; // Sostituisci con il tuo codice per ottenere il colore
-  const numeroAssociato = valore2; // Sostituisci con il tuo codice per ottenere il numero
+  const coloreEsadecimale = valore1; 
+  const numeroAssociato = valore2; 
   
-  // Invia il colore esadecimale e il numero a React Native
+  // Invia il colore esadecimale e il numero a Lista
   const dataToSend = {
     coloreEsadecimale: coloreEsadecimale,
     numeroAssociato: numeroAssociato,
@@ -125,7 +125,6 @@ function Web({navigation,route}) {
       </script>
 
       
-
       <script async src="https://docs.opencv.org/4.5.4/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
       </body>
       `}}
@@ -194,7 +193,6 @@ function Web({navigation,route}) {
 
 
         onMessage={(event) => {
-          //alert(event.nativeEvent.data);
           const colore = event.nativeEvent.data;
           console.log(colore);
           setColore(colore);
