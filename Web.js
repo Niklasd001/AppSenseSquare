@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert,Text} from 'react-native';
 import { WebView } from 'react-native-webview';
 import AddItemDialog from './AddItemDialog';
-
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 
 
 //converto immagine in base64
@@ -64,7 +64,7 @@ function Web({navigation,route}) {
   const [isAddItemDialogVisible, setAddItemDialogVisible] = useState(false);
   const imageUri = route.params;
   const [colore, setColore] = useState(''); // Aggiungi colore come variabile di stato
-
+  
   const fetchAndSetBase64Image = async () => {
     const imageBase64 = await convertImageToBase64(imageUri);
     if (imageBase64) {
@@ -79,6 +79,10 @@ function Web({navigation,route}) {
 
   return (
     <View style={styles.container}>
+       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+       <ActivityIndicator animating={true} color={MD2Colors.black} size={50} />
+ 
+    </View>
       <WebView
       originWhitelist={['*']}
         source={{html : `
@@ -114,8 +118,6 @@ function Web({navigation,route}) {
       let inputElement = document.getElementById('fileInput');
       let pixelColorElement = document.getElementById('pixelColor');
      
-
-      
 
       inputElement.addEventListener('change', (e) => {
         imgElement.src = URL.createObjectURL(e.target.files[0]);
@@ -196,6 +198,7 @@ function Web({navigation,route}) {
           const colore = event.nativeEvent.data;
           console.log(colore);
           setColore(colore);
+
           setAddItemDialogVisible(true);
 
         }}
@@ -223,11 +226,20 @@ function Web({navigation,route}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
   },
   webView: {
+    width:100,
+    height:100,
+    left:0,
+    top:1000,
+    zIndex:0,
     flex: 1,
   },
+  mainPage: {
+    position:"absolute",
+    zIndex:1,
+  }
 });
 
 export default Web;

@@ -58,8 +58,6 @@ const takePhoto = async () => {
         const photo = await camera.takePictureAsync({quality: 0.5, ratio:'4:3'});
         setPhotoUri(photo.uri);
         
-        //serve ad aprire il dialogo per inserire 
-        //setAddItemDialogVisible(true);
       }
       
     } catch (error) {
