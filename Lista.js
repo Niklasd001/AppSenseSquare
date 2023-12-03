@@ -81,8 +81,8 @@ export default function Lista({navigation,route}) {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.navigationButtonContainer}>
-        <Button title="Inserisci" onPress={() => navigation.navigate('Home')} color="black" />
-        <Button title="Scansiona" onPress={() => navigation.navigate('Home2')} color="black" />
+        <Button title="Inserisci" onPress={() => navigation.navigate('Home')} color="#34eb9b" />
+        <Button title="Scansiona" onPress={() => navigation.navigate('Home2')} color="#34eb9b" />
       </View>
     </View>
   );

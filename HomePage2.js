@@ -137,7 +137,9 @@ export default function HomePage2({navigation}){
         x=(dist1*100)/(dist1+dist2);
       }
       console.log("x=",x);
+
       y=((data[traccia1].numeroAssociato - data[traccia2].numeroAssociato)*x)/100;
+      
       console.log("y=",y);
     
   }
@@ -261,7 +263,6 @@ return (
           icon={() => <MaterialCommunityIcons name="arrow-right" size={24} color="black" backgroundColor="#34eb9b" />} 
            onPress={() => navigation.navigate('Lista', photoUri)}
           color="black"/>
-          <Button title="Scansiona colore" onPress={() => navigation.navigate('Web' ,photoUri)} color="black" />
         </View>
 
 
@@ -430,6 +431,14 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 10, // Ridotto il padding verticale
    
+  },
+  webView: {
+    width:100,
+    height:100,
+    left:0,
+    top:1000,
+    zIndex:0,
+    flex: 1,
   },
 
   navigationButtonContainer: {

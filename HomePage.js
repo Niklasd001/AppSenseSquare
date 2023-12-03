@@ -85,7 +85,7 @@ if(hasPermission == false){
 return (
   <View style={styles.container}>
     <Camera style={{ width: cameraDimensions.width, height: cameraDimensions.height }} 
-    type={type} autoFocus={Camera.Constants.AutoFocus.on} zoom={zoom} flashMode={flash} ref={handleCameraRef}>
+    type={type} autoFocus={Camera.Constants.AutoFocus.on} ratio={"16:9"} zoom={zoom} flashMode={flash} ref={handleCameraRef}>
       <View style={styles.overlay}>
 
         
@@ -126,7 +126,7 @@ return (
           icon={() => <MaterialCommunityIcons name="arrow-right" size={24} color="black" backgroundColor="#34eb9b" />} 
            onPress={() => navigation.navigate('Lista', photoUri)}
           color="black"/>
-          <Button title="Scansiona colore" onPress={() => navigation.navigate('Web' ,photoUri)} color="black" />
+          <Button title="Scansiona" onPress={() => navigation.navigate('Web' ,photoUri)} color="#34eb9b" />
         </View>
 
 
@@ -144,6 +144,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    top: 50,
+    
   },
   camera: {
     flex: 1,

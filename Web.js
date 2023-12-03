@@ -3,6 +3,7 @@ import { View, StyleSheet, Alert,Text} from 'react-native';
 import { WebView } from 'react-native-webview';
 import AddItemDialog from './AddItemDialog';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { Dimensions } from 'react-native';
 
 
 //converto immagine in base64
@@ -79,7 +80,11 @@ function Web({navigation,route}) {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={{textAlign: 'center', fontSize:30,top : 50}}> ELABORAZIONE COMPLETATA</Text>
+      </View>
        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        
        <ActivityIndicator animating={true} color={MD2Colors.black} size={50} />
  
     </View>
