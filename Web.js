@@ -81,7 +81,7 @@ function Web({navigation,route}) {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={{textAlign: 'center', fontSize:30,top : 50}}> ELABORAZIONE COMPLETATA</Text>
+        <Text style={{textAlign: 'center', fontSize:30,top : 50}}> ELABORAZIONE IN CORSO</Text>
       </View>
        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         
